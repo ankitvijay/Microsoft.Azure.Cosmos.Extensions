@@ -7,13 +7,9 @@ namespace Microsoft.Azure.Cosmos
     {
         ValueTask Add(T entity);
         ValueTask Upsert(T entity);
-
         ValueTask Delete(string id);
-
         ValueTask<T> Get(string id);
-
         ValueTask<ICollection<T>> Get(ICollection<string> ids);
-        
         ValueTask Save();
     }
 }
