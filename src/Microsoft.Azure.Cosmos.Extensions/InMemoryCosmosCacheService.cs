@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ardalis.GuardClauses;
 
 namespace Microsoft.Azure.Cosmos
 {
     public class InMemoryCosmosCacheService<T> : ICosmosCacheService<T> where T : CosmosItem
     {
-        private readonly IDictionary<(string,string), T> _cachedItems = new Dictionary<(string,string), T>();
+        private readonly IDictionary<(string,string), T> _cachedItems = new ConcurrentDictionary<(string, string), T>();
 
         public ValueTask Upsert(string id, string etag, T item)
         {
